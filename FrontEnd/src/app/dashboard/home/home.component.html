@@ -1,0 +1,12 @@
+<div class="row">
+  <div class="col-md-6 col-sm-3">
+    <p>{{homeDetails?.message}}</p>
+    <p><strong translate>Name:</strong> {{homeDetails?.firstName}} {{homeDetails?.lastName}}</p>
+    <p *ngIf="homeDetails?.location"><strong translate>Location:</strong> {{homeDetails?.location}}</p>
+    <p translate *ngIf="homeDetails?.locale"><strong>Locale:</strong> {{homeDetails?.locale}}</p>
+    <p translate *ngIf="homeDetails?.gender"><strong>Gender:</strong> {{homeDetails?.gender}}</p>
+  </div>
+</div>
+
+ 
+ 

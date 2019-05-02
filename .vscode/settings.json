@@ -1,0 +1,4 @@
+{
+    "appService.deploySubpath": "",
+    "appService.defaultWebAppToDeploy": "/subscriptions/975d7ac4-d793-423a-bc57-40c8f81e3cc1/resourceGroups/OOEC-Front/providers/Microsoft.Web/sites/OOEC-Front"
+}

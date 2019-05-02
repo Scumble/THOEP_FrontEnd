@@ -1,0 +1,30 @@
+<h1>User Data</h1>  
+<p *ngIf="!userlist"><em>Loading...</em></p>  
+<table class='table table-bordered' *ngIf="userlist">  
+    <thead style="background-color:green;font-weight:bold;color:white;">  
+        <tr>  
+            <th>UserID</th>  
+            <th>FirstName</th>  
+            <th>LastName</th>  
+            <th>Email</th>  
+            <th>ConcurrencyStamp</th>
+            <th>LockoutEnd</th>     
+            <th>SecurityStamp</th>    
+            <th>UserName</th>   
+            <th>Actions</th>   
+        </tr>  
+    </thead>  
+    <tbody>  
+        <tr *ngFor="let user of userlist">  
+            <td>{{ user.id }}</td>  
+            <td>{{ user.firstName}}</td>  
+            <td>{{ user.lastName }}</td>  
+            <td>{{ user.email }}</td>  
+            <td>{{ user.concurrencyStamp }}</td> 
+            <td>{{ user.lockoutEnd }}</td> 
+            <td>{{ user.securityStamp }}</td>   
+            <td>{{ user.userName }}</td>       
+            <td> <a [routerLink]="" (click)="unlockUser(user.id)">Unlock User</a> | <a [routerLink]="" (click)="lockUser(user.id)">Lock User</a> | <a [routerLink]="" (click)="deleteUser(user.id)">Delete User</a> </td>  
+        </tr>  
+    </tbody>  
+</table> 
