@@ -1,0 +1,40 @@
+<h1 translate>{{title}}</h1>
+<h3 translate>Patient</h3>
+<hr />
+<form [formGroup]="patientForm" (ngSubmit)="save()" #formDir="ngForm" novalidate>
+  <div class="form-group row"> <label translate class=" control-label col-md-12" for="FirstName">First Name</label>
+    <div class="col-md-4"> <input class="form-control" type="text" formControlName="firstName"> </div> <span
+      class="text-danger" *ngIf="patientForm.hasError('required', 'firstName') && formDir.submitted">
+      First Name is required.
+    </span>
+  </div>
+  <div class="form-group row"> <label translate class=" control-label col-md-12" for="LastName">Last Name</label>
+    <div class="col-md-4"> <input class="form-control" type="text" formControlName="lastName"> </div> <span
+      class="text-danger" *ngIf="patientForm.hasError('required', 'lastName') && formDir.submitted">
+      Last Name is required.
+    </span>
+  </div>
+  <div class="form-group row"> <label translate class="control-label col-md-12" for="Address">Address</label>
+    <div class="col-md-4"> <input class="form-control" type="text" formControlName="address"> </div> <span
+      class="text-danger" *ngIf="patientForm.hasError('required', 'address') && formDir.submitted">
+      Address is required
+    </span>
+  </div>
+  <div class="form-group row"> <label translate class="control-label col-md-12" for="BirthDate">Birth Date</label>
+    <div class="col-md-4"> <input class="form-control" type="date" formControlName="birthDate"> </div> <span
+      class="text-danger" *ngIf="patientForm.hasError('required', 'birthDate') && formDir.submitted">
+      Birth Date is required
+    </span>
+  </div>
+  <div class="form-group row"> <label translate class="control-label col-md-12" for="gender">Gender</label>
+    <div class="col-md-4"> <select class="form-control" formControlName="gender">
+        <option>Male</option>
+        <option>Female</option>
+      </select> </div> <span class="text-danger"
+      *ngIf="patientForm.hasError('required', 'gender') && formDir.submitted">
+      Gender is required
+    </span>
+  </div>
+  <div class="form-group"> <button class="btn btn-default">Save</button> <button translate class="btn"
+      (click)="cancel()">Cancel</button> </div>
+</form>

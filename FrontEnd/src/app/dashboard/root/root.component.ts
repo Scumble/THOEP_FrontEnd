@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {Globals} from '../../globals'
-import { TranslateService } from '@ngx-translate/core';
+import { Subscription } from 'rxjs';
+import { UserService } from 'src/app/shared/services/user.service';
+import { Globals } from 'src/app/globals';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +11,7 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class RootComponent implements OnInit {
 
-  constructor(private globals: Globals) { }
+  constructor( private globals: Globals) { }
 
   ngOnInit() {
   }

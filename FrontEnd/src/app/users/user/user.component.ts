@@ -1,6 +1,7 @@
 import {  
     Component,  
-    Inject  
+    Inject,  
+    OnInit
 } from '@angular/core';  
 import {  
     Http,  
@@ -18,12 +19,14 @@ import { DatePipe } from '@angular/common';
     selector: 'user',  
     templateUrl: './user.component.html'  
 })  
-export class UserComponent {  
+export class UserComponent implements OnInit {  
     public userlist: UserList[];  
     errorMessage:any;
-    constructor(public http: Http, private _router: Router, private _userService: UserService) {  
+    constructor(public http: Http, private _userService: UserService) {  }  
+
+    ngOnInit() {
         this.getUsers();  
-    }  
+    }
     getUsers() {  
         this._userService.getUsers().subscribe(data => {
         this.userlist = data;
@@ -37,15 +40,15 @@ export class UserComponent {
         var ans = confirm("Do you want to lock user with Id: " + UserId);  
         if (ans) {  
             this._userService.lockUser(UserId).subscribe((data) => {  
-                this._router.navigate(['/users']);  
-            }, error => this.errorMessage = error)  
+                this.getUsers();  
+            }, error => console.error(error))  
         }  
     }  
     unlockUser(UserId: string) {  
-        var ans = confirm("Do you want to lock user with Id: " + UserId);  
+        var ans = confirm("Do you want to unlock user with Id: " + UserId);  
         if (ans) {  
-            this._userService.unlockUser(UserId).subscribe((data) => {  
-                this._router.navigate(['/users']);  
+            this._userService.unlockUser(UserId).subscribe(()=>{  
+                this.getUsers();  
             }, error => this.errorMessage = error)  
         }  
     }  
@@ -53,7 +56,7 @@ export class UserComponent {
         var ans = confirm("Do you want to delete user with Id: " + UserId);  
         if (ans) {  
             this._userService.deleteUser(UserId).subscribe((data) => {  
-                this._router.navigate(['/users']);  
+               this.getUsers();
             }, error => this.errorMessage = error)  
         }  
     } 

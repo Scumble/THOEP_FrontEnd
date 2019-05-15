@@ -12,6 +12,7 @@ import { AuthGuard } from '../auth.guard';
 import { SettingsComponent } from './settings/settings.component';
 import { HomeadminComponent } from './homeadmin/homeadmin.component';
 import { Globals } from '../globals';
+import { UserService } from '../shared/services/user.service';
 
 @NgModule({
   imports: [
@@ -22,6 +23,6 @@ import { Globals } from '../globals';
   ],
   declarations: [RootComponent,HomeComponent, SettingsComponent, HomeadminComponent,HomeadminComponent],
   exports:      [ ],
-  providers:    [AuthGuard,DashboardService,Globals]
+  providers:    [AuthGuard,DashboardService,Globals, UserService]
 })
 export class DashboardModule { }

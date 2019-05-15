@@ -1,37 +1,35 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
-
 import { UserRegistration } from '../models/user.registration.interface';
-import { ConfigService } from '../utils/config.service';
-
 import {BaseService} from "./base.service";
-
 import { Observable } from 'rxjs/Rx';
 import { BehaviorSubject } from 'rxjs/Rx'; 
-
-// Add the RxJS Observable operators we need in this app.
 import '../../rxjs-operators';
+import { environment } from 'src/environments/environment';
 
 @Injectable()
 
 export class UserService extends BaseService {
 
-  baseUrl: string = '';
+  baseUrl: string = environment.apiUrl;
 
-  // Observable navItem source
   private _authNavStatusSource = new BehaviorSubject<boolean>(false);
-  // Observable navItem stream
   authNavStatus$ = this._authNavStatusSource.asObservable();
-
+  private _authNavStatusSourceAdmin = new BehaviorSubject<boolean>(false);
+  authNavStatusAdmin$ = this._authNavStatusSourceAdmin.asObservable();
+  private _authNavStatusSourceSysAdmin = new BehaviorSubject<boolean>(false);
+  authNavStatusSysAdmin$ = this._authNavStatusSourceSysAdmin.asObservable();
   private loggedIn = false;
-
-  constructor(private http: Http, private configService: ConfigService) {
+  private isAdmin = false;
+  private isSysAdmin = false;
+  constructor(private http: Http) {
     super();
     this.loggedIn = !!localStorage.getItem('auth_token');
-    // ?? not sure if this the best way to broadcast the status but seems to resolve issue on page refresh where auth status is lost in
-    // header component resulting in authed user nav links disappearing despite the fact user is still logged in
+    this.isAdmin = !!localStorage.getItem('admin');
+    this.isSysAdmin = !!localStorage.getItem('sysadmin');
     this._authNavStatusSource.next(this.loggedIn);
-    this.baseUrl = configService.getApiURI();
+    this._authNavStatusSourceAdmin.next(this.isAdmin);
+    this._authNavStatusSourceSysAdmin.next(this.isSysAdmin);
   }
 
     register(email: string, password: string, firstName: string, lastName: string,location: string): Observable<Boolean> {
@@ -58,6 +56,12 @@ export class UserService extends BaseService {
         localStorage.setItem('auth_token', res.auth_token);
         this.loggedIn = true;
         this._authNavStatusSource.next(true);
+        this.isAdmin = false;
+        this.isSysAdmin = false;
+        localStorage.removeItem("admin");
+        localStorage.removeItem("sysadmin");
+        this._authNavStatusSourceAdmin.next(false);
+        this._authNavStatusSourceSysAdmin.next(false);
         return true;
       })
       .catch(this.handleError);
@@ -76,6 +80,37 @@ export class UserService extends BaseService {
         localStorage.setItem('auth_token', res.auth_token);
         this.loggedIn = true;
         this._authNavStatusSource.next(true);
+        this.isAdmin = true;
+        this.isSysAdmin = false;
+        localStorage.setItem("admin","true");
+        localStorage.removeItem("sysadmin");
+        this._authNavStatusSourceAdmin.next(true);
+        this._authNavStatusSourceSysAdmin.next(false);
+        return true;
+      })
+      .catch(this.handleError);
+  }
+
+  loginSysAdmin(userName, password) {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+
+    return this.http
+      .post(
+      this.baseUrl + '/auth/admin',
+      JSON.stringify({ userName, password }),{ headers }
+      )
+      .map(res => res.json())
+      .map(res => {
+        localStorage.setItem('auth_token', res.auth_token);
+        this.loggedIn = true;
+        this._authNavStatusSource.next(true);
+        this.isAdmin = false;
+        this.isSysAdmin = true;
+        localStorage.removeItem("admin");
+        localStorage.setItem("sysadmin","true");
+        this._authNavStatusSourceAdmin.next(false);
+        this._authNavStatusSourceSysAdmin.next(true);
         return true;
       })
       .catch(this.handleError);

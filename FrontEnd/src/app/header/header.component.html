@@ -1,36 +1,37 @@
 <header>
   <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-    <a class="navbar-brand" href="#">OOEC</a>
+    <a class="navbar-brand" href="#">THOEP</a>
     <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
       
-        <ul *ngIf="status" class="navbar-nav mr-auto">
+          <ul *ngIf="status" class="navbar-nav mr-auto">
             <li class="nav-item">
-               <a translate class="nav-link" (click)="logout()" href="#">Logoff</a>
+               <a translate class="nav-link" (click)="logout()" routerLink="/login">Logoff</a>
             </li>
-            <li class="nav-item">
-            <a translate class="nav-link" routerLinkActive="active" routerLink="/dashboard">Dashboard</a> 
+            <li *ngIf="isAdmin==false && isSysAdmin==false" class="nav-item">
+            <a translate class="nav-link" routerLinkActive="active" routerLink="/dashboard/home">Dashboard</a> 
             </li>         
-            <li *ngIf="!globals.isAdmin" class="nav-item">
-              <a translate class="nav-link" routerLinkActive="active" routerLink="/tournaments">Tournaments</a> 
+            <li *ngIf="isAdmin==true || isSysAdmin==true" class="nav-item">
+              <a translate class="nav-link" routerLinkActive="active" routerLink="/dashboard/homeadmin">Dashboard</a> 
+              </li>       
+            <li *ngIf="isAdmin===false && isSysAdmin===false" class="nav-item">
+              <a translate class="nav-link" routerLinkActive="active" routerLink="/patients">Patients</a> 
               </li> 
-              <li  *ngIf="!globals.isAdmin" class="nav-item">
-                <a translate class="nav-link" routerLinkActive="active" routerLink="/allTeams">Teams</a> 
-                </li>  
-              <li *ngIf="globals.isAdmin" class="nav-item">
+              <li *ngIf="isAdmin" class="nav-item">
                 <a translate class="nav-link" routerLinkActive="active" routerLink="/users">Users</a> 
                 </li>      
-                <li *ngIf="!globals.isAdmin" class="nav-item">
-                  <a translate class="nav-link" routerLinkActive="active" routerLink="/proteams">Pro Teams</a> 
-                </li>
-                <li>  <button (click)="switchLanguage('en')">en</button></li>    
+                <li *ngIf="isAdmin" class="nav-item">
+                  <a translate class="nav-link" routerLinkActive="active" routerLink="/diseases">Diseases</a> 
+                  </li>   
+                <li *ngIf="isSysAdmin" class="nav-item">
+                  <a translate class="nav-link" routerLinkActive="active" routerLink="/dbmanage">Db</a> 
+                  </li>      
+                <li><button (click)="switchLanguage('en')">en</button></li>    
                 
                  <li><button (click)="switchLanguage('ukr')">ukr</button></li>
-
-          </ul>
-
+          </ul> 
           <ul *ngIf="!status" class="nav navbar-nav">
               <li class="nav-item">
                 <a translate class="nav-link" routerLinkActive="active" routerLink="/register">Signup</a>

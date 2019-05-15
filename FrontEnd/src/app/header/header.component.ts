@@ -1,9 +1,8 @@
 import { Component, OnInit,OnDestroy } from '@angular/core';
 import {Subscription} from 'rxjs/Subscription';
-
 import { UserService } from '../shared/services/user.service';
-import {Globals} from '../globals'
 import { TranslateService } from '@ngx-translate/core';
+import { Globals } from '../globals';
 
 @Component({
   selector: 'app-header',
@@ -11,12 +10,16 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./header.component.scss']
 })
 
-export class HeaderComponent implements OnInit,OnDestroy {
+export class HeaderComponent implements OnInit {
 
   status: boolean;
- subscription:Subscription;
+  subscription:Subscription;
+  subscriptionAdmin:Subscription;
+  subscriptionSysAdmin:Subscription;
+  isAdmin: boolean;
+  isSysAdmin:boolean;
 
-  constructor(private userService:UserService,private globals: Globals,private translate: TranslateService) {     
+  constructor(private userService:UserService, private translate: TranslateService, private globals: Globals) {     
     translate.setDefaultLang('en');
    }
    switchLanguage(language: string) {
@@ -28,11 +31,14 @@ export class HeaderComponent implements OnInit,OnDestroy {
   }
 
   ngOnInit() {
+    this.subscriptionAdmin = this.userService.authNavStatusAdmin$.subscribe(isAdmin=>this.isAdmin=isAdmin);
+    this.subscriptionSysAdmin = this.userService.authNavStatusSysAdmin$.subscribe(isSysAdmin=>this.isSysAdmin=isSysAdmin);
     this.subscription = this.userService.authNavStatus$.subscribe(status => this.status = status);
   }
 
    ngOnDestroy() {
-    // prevent memory leak when component is destroyed
     this.subscription.unsubscribe();
+    this.subscriptionAdmin.unsubscribe();
+    this.subscriptionSysAdmin.unsubscribe();
   }
 }

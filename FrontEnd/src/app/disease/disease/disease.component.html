@@ -1,0 +1,24 @@
+<h1>Diseases</h1>  
+<p *ngIf="!diseaseList"><em>Loading...</em></p>  
+<p translate> <a translate [routerLink]="['/addDisease']">Create New</a> </p>
+<table class='table table-bordered' *ngIf="diseaseList">  
+    <thead style="background-color:green;font-weight:bold;color:white;">  
+        <tr>  
+            <th translate>Disease Code</th>  
+            <th translate>Disease Name</th>  
+            <th translate>Danger Level</th>  
+            <th translate>Recommendation</th>
+            <th>Actions</th>
+        </tr>  
+    </thead>  
+    <tbody>  
+        <tr *ngFor="let item of diseaseList">  
+            <td>{{ item.diseaseCode }}</td>  
+            <td>{{ item.diseaseName }}</td>  
+            <td>{{ item.dangerLevel }}</td>  
+            <td>{{ item.recommendation }}</td>
+            <td> <a translate [routerLink]="['/updatedisease/', item.id]">Edit</a> | <a translate [routerLink]=""
+              (click)="deleteDisease(item.id)">Delete</a></td>
+        </tr>  
+    </tbody>  
+</table> 

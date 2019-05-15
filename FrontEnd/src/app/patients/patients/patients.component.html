@@ -1,0 +1,32 @@
+<h1>Patients</h1>
+<p *ngIf="!patients"><em>Loading...</em></p>
+<p translate> <a translate [routerLink]="['/addPatient']">Create New</a> </p>
+<table class='table table-bordered' *ngIf="patients">
+    <thead style="background-color:green;font-weight:bold;color:white;">
+        <tr>
+            <th translate>FirstName</th>
+            <th translate>LastName</th>
+            <th translate>Gender</th>
+            <th translate>Age</th>
+            <th translate>BirthDate</th>
+            <th translate>Address</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of patients">
+            <td>{{ item.firstName }}</td>
+            <td>{{ item.lastName }}</td>
+            <td>{{ item.gender }}</td>
+            <td>{{ item.age }}</td>
+            <td>{{ item.birthDate | date: 'dd/MM/yyyy'}}</td>
+            <td>{{ item.address }}</td>
+            <td> <a translate [routerLink]="['/updatePatient/', item.id]">Edit</a> | <a translate [routerLink]=""
+                    (click)="deletePatient(item.id)">Delete</a> | <a translate
+                    [routerLink]="['/patientEncoded/', item.id]">Encode to HL7</a> | <a translate
+                    [routerLink]="['/healthInfo/', item.id]">Show healthInfo</a> | <a translate
+                    [routerLink]="['/hospitals/', item.id]">Show patient location</a> | <a [routerLink]="['/healthStatistics/', item.id]">Show statistics</a>
+                </td>
+        </tr>
+    </tbody>
+</table>

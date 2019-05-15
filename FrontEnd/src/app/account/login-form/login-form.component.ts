@@ -1,11 +1,8 @@
-import { Subscription } from 'rxjs';
+import { Subscription, Subject } from 'rxjs';
 import { Component, OnInit,OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-
 import { Credentials } from '../../shared/models/credentials.interface';
-import { adminCredentials } from '../../shared/models/adminCredentials.interface';
 import { UserService } from '../../shared/services/user.service';
-import { ValueConverter } from '@angular/compiler/src/render3/view/template';
 import {Globals} from '../../globals'
 import { TranslateService } from '@ngx-translate/core';
 
@@ -18,7 +15,7 @@ import { TranslateService } from '@ngx-translate/core';
 export class LoginFormComponent implements OnInit, OnDestroy {
 
   private subscription: Subscription;
-
+ 
   brandNew: boolean;
   errors: string;
   isRequesting: boolean;
@@ -48,26 +45,41 @@ export class LoginFormComponent implements OnInit, OnDestroy {
     this.submitted = true;
     this.isRequesting = true;
     this.errors='';
-    if(value.email=="admin@gmail.com") {
+    if(valid && value.email=="admin@gmail.com") {
       this.userService.loginAdmin(value.email,value.password)
         .finally(() => this.isRequesting = false)
         .subscribe(
         result => {         
           if (result) {
              this.router.navigate(['/dashboard/homeadmin']);     
-             this.globals.isAdmin=true;
+  
           }
         },
         error => this.errors = error);
     }
-    else if (valid) {  
+    else if(valid && value.email=="sysadmin@gmail.com") {
+       this.userService.loginSysAdmin(value.email,value.password)
+        .finally(() => this.isRequesting = false)
+         .subscribe(
+         result => {         
+           if (result) {
+              this.router.navigate(['/dashboard/homeadmin']);     
+              // this.globals.isSysAdmin=true;
+              // this.globals.isAdmin=false;
+  
+           }
+         },
+         error => this.errors = error);
+    }
+    else {  
       this.userService.login(value.email, value.password)
       .finally(() => this.isRequesting = false)
       .subscribe(
       result => {         
         if (result) {
-           this.router.navigate(['/dashboard/home']);   
-           this.globals.isAdmin=false;     
+           this.router.navigate(['/dashboard/home']);    
+            // this.globals.isAdmin=false;     
+            // this.globals.isSysAdmin = false;
         }
       },
       error => this.errors = error);

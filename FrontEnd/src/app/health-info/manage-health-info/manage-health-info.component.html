@@ -1,0 +1,37 @@
+<h1 translate>{{title}}</h1>
+<h3 translate>Health Info</h3>
+<hr />
+<form [formGroup]="healthInfoForm" (ngSubmit)="save()" #formDir="ngForm" novalidate>
+  <div class="form-group row"> <label translate class=" control-label col-md-12">Disease Code</label>
+    <div class="col-md-4"> <select class="form-control" type="text" formControlName="diseaseCode"><option *ngFor="let item of diseaseList">{{item.diseaseCode}}</option></select></div> <span
+      class="text-danger" *ngIf="healthInfoForm.hasError('required', 'diseaseCode') && formDir.submitted">
+      Disease Code is required.
+    </span>
+  </div>
+  <div class="form-group row"> <label translate class="control-label col-md-12">Heart Rate</label>
+    <div class="col-md-4"> <input class="form-control" type="number" formControlName="heartRate"> </div> <span
+      class="text-danger" *ngIf="healthInfoForm.hasError('required', 'heartRate') && formDir.submitted">
+      Heart Rate is required
+    </span>
+  </div>
+  <div class="form-group row"> <label translate class="control-label col-md-12">Blood Pressure</label>
+    <div class="col-md-4"> <input class="form-control" type="number" formControlName="bloodPressure"> </div> <span
+      class="text-danger" *ngIf="healthInfoForm.hasError('required', 'bloodPressure') && formDir.submitted">
+      Blood Pressure is required
+    </span>
+  </div>
+  <div class="form-group row"> <label translate class="control-label col-md-12">Temperature</label>
+    <div class="col-md-4"> <input class="form-control" type="number" formControlName="temperature"> </div> <span
+      class="text-danger" *ngIf="healthInfoForm.hasError('required', 'temperature') && formDir.submitted">
+      Temperature is required
+    </span>
+  </div>
+  <div class="form-group row"> <label translate class="control-label col-md-12">Weight</label>
+    <div class="col-md-4"> <input class="form-control" type="number" formControlName="weight"> </div> <span
+      class="text-danger" *ngIf="healthInfoForm.hasError('required', 'weight') && formDir.submitted">
+      Weight is required
+    </span>
+  </div>
+  <div class="form-group"> <button class="btn btn-default">Save</button> <button translate class="btn"
+      (click)="cancel()">Cancel</button> </div>
+</form>

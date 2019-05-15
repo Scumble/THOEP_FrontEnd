@@ -1,0 +1,31 @@
+<h1 translate>{{title}}</h1>
+<h3 translate>Disease</h3>
+<hr />
+<form [formGroup]="diseaseForm" (ngSubmit)="save()" #formDir="ngForm" novalidate>
+  <div class="form-group row"> <label translate class=" control-label col-md-12">Disease Code</label>
+    <div class="col-md-4"> <input class="form-control" type="text" formControlName="diseaseCode"> </div> <span
+      class="text-danger" *ngIf="diseaseForm.hasError('required', 'diseaseCode') && formDir.submitted">
+      Disease Code is required.
+    </span>
+  </div>
+  <div class="form-group row"> <label translate class=" control-label col-md-12">Disease Name</label>
+    <div class="col-md-4"> <input class="form-control" type="text" formControlName="diseaseName"> </div> <span
+      class="text-danger" *ngIf="diseaseForm.hasError('required', 'diseaseName') && formDir.submitted">
+      Disease Name is required.
+    </span>
+  </div>
+  <div class="form-group row"> <label translate class="control-label col-md-12">Danger Level</label>
+    <div class="col-md-4"> <input class="form-control" type="number" formControlName="dangerLevel"> </div> <span
+      class="text-danger" *ngIf="diseaseForm.hasError('required', 'dangerLevel') && formDir.submitted">
+      Danger Level is required
+    </span>
+  </div>
+  <div class="form-group row"> <label translate class="control-label col-md-12">Recommendations</label>
+    <div class="col-md-4"> <input class="form-control" type="text" formControlName="recommendation"> </div> <span
+      class="text-danger" *ngIf="diseaseForm.hasError('required', 'recommendation') && formDir.submitted">
+      Recommendations is required
+    </span>
+  </div>
+  <div class="form-group"> <button class="btn btn-default">Save</button> <button translate class="btn"
+      (click)="cancel()">Cancel</button> </div>
+</form>
