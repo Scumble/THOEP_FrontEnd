@@ -7,3 +7,11 @@ agm-map {
     height: 100% !important;
     width: 100% !important;
 }
+@media only screen and (max-width: 680px) {
+#map
+{
+    position: absolute!important; 
+    height: 100% !important;
+    width: 100% !important;
+}
+}

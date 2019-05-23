@@ -13,7 +13,6 @@ import { ActivatedRoute } from '@angular/router';
 export class HospitalsMapComponent implements OnInit {
   patientCoordinates:any;
   patientId: number;
-  title: string = 'Nearest hospitals';
   map: any;
   options = {
         enableHighAccuracy: true,
@@ -28,7 +27,6 @@ export class HospitalsMapComponent implements OnInit {
     if (this._avRoute.snapshot.params['patientId']) {  
       this.patientId = this._avRoute.snapshot.params['patientId'];  
     }
-    this.setPatientCoordinates(this.patientId);
     this.initMap();
   }
 
@@ -43,6 +41,7 @@ export class HospitalsMapComponent implements OnInit {
         map: this.map,
         position: {lat: location.coords.latitude, lng: location.coords.longitude}
       });
+      this.setPatientCoordinates(this.patientId);
       var service = new google.maps.places.PlacesService(this.map);
       service.nearbySearch({
         location: {lat: location.coords.latitude, lng: location.coords.longitude},

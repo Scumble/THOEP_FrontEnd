@@ -1,6 +1,6 @@
-<h1>Patients Health Info</h1>  
+<h1 translate>Patients Health Info</h1>  
 <p *ngIf="!healthInfo"><em>Loading...</em></p>  
-<p translate> <a translate [routerLink]="['/addhealthInfo']">Create New</a> </p>
+<p translate> <a translate [routerLink]="['/addhealthInfo']">Add health info</a> </p>
 <table class='table table-bordered' *ngIf="healthInfo">  
     <thead style="background-color:green;font-weight:bold;color:white;">  
         <tr>  
@@ -10,8 +10,8 @@
             <th translate>Blood Pressure</th>
             <th translate>Body Temperature</th>
             <th translate>Weight</th>
-            <th>Time</th>
-            <th>Actions</th>
+            <th translate>Time</th>
+            <th translate>Actions</th>
         </tr>  
     </thead>  
     <tbody>  
@@ -26,14 +26,14 @@
             <td> <a translate [routerLink]=""
                 (click)="deleteHealthInfo(item.id)">Delete</a> | <a translate
                 [routerLink]="['/healthInfoEncoded/', item.id]">Encode to HL7</a> |
-                <button class="btn btn-lg btn-outline-primary" (click)="open(content); checkHealthInfo(item.patientId, item.id)">Check healthInfo</button>
+                <button translate class="btn btn-lg btn-outline-primary" (click)="open(content); checkHealthInfo(item.patientId, item.id)">Check healthInfo</button>
             </td> 
         </tr>  
     </tbody>  
 </table> 
 <ng-template #content let-modal>
     <div class="modal-header">
-      <h4 class="modal-title" id="modal-basic-title">Health Analysis</h4>
+      <h4 class="modal-title" id="modal-basic-title" translate>Health Analysis</h4>
       <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
         <span aria-hidden="true">&times;</span>
       </button>
@@ -42,6 +42,6 @@
       {{patientHealthInfo}}
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Close</button>
     </div>
   </ng-template>

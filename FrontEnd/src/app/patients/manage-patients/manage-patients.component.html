@@ -28,13 +28,13 @@
   </div>
   <div class="form-group row"> <label translate class="control-label col-md-12" for="gender">Gender</label>
     <div class="col-md-4"> <select class="form-control" formControlName="gender">
-        <option>Male</option>
-        <option>Female</option>
+        <option translate>Male</option>
+        <option translate>Female</option>
       </select> </div> <span class="text-danger"
       *ngIf="patientForm.hasError('required', 'gender') && formDir.submitted">
       Gender is required
     </span>
   </div>
-  <div class="form-group"> <button class="btn btn-default">Save</button> <button translate class="btn"
+  <div class="form-group"> <button translate class="btn btn-default">Save</button> <button translate class="btn"
       (click)="cancel()">Cancel</button> </div>
 </form>

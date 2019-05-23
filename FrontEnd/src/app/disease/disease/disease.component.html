@@ -1,6 +1,6 @@
-<h1>Diseases</h1>  
+<h1 translate>Diseases</h1>  
 <p *ngIf="!diseaseList"><em>Loading...</em></p>  
-<p translate> <a translate [routerLink]="['/addDisease']">Create New</a> </p>
+<p translate> <a translate [routerLink]="['/addDisease']">Add New Disease</a> </p>
 <table class='table table-bordered' *ngIf="diseaseList">  
     <thead style="background-color:green;font-weight:bold;color:white;">  
         <tr>  
@@ -8,7 +8,7 @@
             <th translate>Disease Name</th>  
             <th translate>Danger Level</th>  
             <th translate>Recommendation</th>
-            <th>Actions</th>
+            <th translate>Actions</th>
         </tr>  
     </thead>  
     <tbody>  

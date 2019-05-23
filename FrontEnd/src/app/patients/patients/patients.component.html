@@ -1,6 +1,6 @@
-<h1>Patients</h1>
+<h1 translate>Patients</h1>
 <p *ngIf="!patients"><em>Loading...</em></p>
-<p translate> <a translate [routerLink]="['/addPatient']">Create New</a> </p>
+<p translate> <a translate [routerLink]="['/addPatient']">Create New Patient</a> </p>
 <table class='table table-bordered' *ngIf="patients">
     <thead style="background-color:green;font-weight:bold;color:white;">
         <tr>
@@ -10,7 +10,7 @@
             <th translate>Age</th>
             <th translate>BirthDate</th>
             <th translate>Address</th>
-            <th>Actions</th>
+            <th translate>Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -25,7 +25,7 @@
                     (click)="deletePatient(item.id)">Delete</a> | <a translate
                     [routerLink]="['/patientEncoded/', item.id]">Encode to HL7</a> | <a translate
                     [routerLink]="['/healthInfo/', item.id]">Show healthInfo</a> | <a translate
-                    [routerLink]="['/hospitals/', item.id]">Show patient location</a> | <a [routerLink]="['/healthStatistics/', item.id]">Show statistics</a>
+                    [routerLink]="['/hospitals/', item.id]">Show patient location</a> | <a translate [routerLink]="['/healthStatistics/', item.id]">Show statistics</a>
                 </td>
         </tr>
     </tbody>
