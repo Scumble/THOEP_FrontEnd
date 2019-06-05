@@ -17,7 +17,7 @@ import { PatientService } from '../services/patient.service';
     ReactiveFormsModule,
     BrowserModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyCOJjvXVJjWfeM-wOlw2yeUp8FGiCd3PfI',
+      apiKey: '',
       libraries: ["places"]
     }),
   ],
