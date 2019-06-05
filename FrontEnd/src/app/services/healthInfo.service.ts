@@ -44,6 +44,10 @@ export class HealthInfoService {
         return this._http.get(this.myAppUrl + "/healthInfo-encoded/" + healthInfoId, { headers }).map((response: Response) => response.text()).catch(this.errorHandler);
     }
 
+    getHeartRate() {
+        return this._http.get(this.myAppUrl + "/arduino/heartRate").map((response: Response) => response.text()).catch(this.errorHandler);
+    }
+
     addHealthInfo(healthInfo: any) {
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');

@@ -27,7 +27,7 @@ export class ManageHealthInfoComponent implements OnInit {
             id: 0,
             patientId: this._globals.patientId,
             diseaseCode: ['', Validators.required],
-            heartRate: ['', Validators.required],
+            heartRate: parseInt(this._globals.heartRate),
             bloodPressure: ['', Validators.required],
             temperature: ['', Validators.required],
             weight: ['', Validators.required]

@@ -31,6 +31,7 @@ export class HospitalsMapComponent implements OnInit {
   }
 
   initMap() {
+    this.addPatientCoordinates(this.patientId);
     this.mapsAPILoader.load().then(() => {
     navigator.geolocation.getCurrentPosition((location) => {
       this.map = new google.maps.Map(this.mapElement.nativeElement, {
@@ -90,5 +91,10 @@ export class HospitalsMapComponent implements OnInit {
         position: {lat: this.patientCoordinates.latitude, lng: this.patientCoordinates.longtitude}
       });
     });   
+  }
+
+  
+  addPatientCoordinates(patientId: number) {
+    this._patientService.addPatientCoordinates(patientId).subscribe();   
   }
 }

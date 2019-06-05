@@ -1,0 +1,6 @@
+<h2>Measure Heart Rate</h2>
+<p *ngIf="!_globals.heartRate"><em>Loading...</em></p>  
+<p>{{_globals.heartRate}}</p>
+<button class="btn btn-primary" (click)="setHeartRate();">Check Heart Rate</button>
+<br>
+<a [routerLink]="['/addhealthInfo']">Save to health info</a>

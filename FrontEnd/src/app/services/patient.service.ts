@@ -29,6 +29,12 @@ export class PatientService {
         return this._http.get(this.myAppUrl + "/patientcoord/" + patientId, { headers }).map((response: Response) => response.json()).catch(this.errorHandler);
     }
 
+    addPatientCoordinates(patientId: number) {
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        return this._http.get(this.myAppUrl + '/arduino/getCoord/' + patientId, {headers});
+    }
+
     getEncodedPatientById(patientId: number) {
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');

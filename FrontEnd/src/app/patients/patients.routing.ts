@@ -11,6 +11,7 @@ import { HospitalsMapComponent } from '../hospitals-map/hospitals-map/hospitals-
 import { DiseaseComponent } from '../disease/disease/disease.component';
 import { ManageDiseasesComponent } from '../disease/manage-diseases/manage-diseases.component';
 import { HelathInfoStatisticsComponent } from '../health-info-statistics/helath-info-statistics/helath-info-statistics.component';
+import { HeartRateComponent } from '../health-info/heart-rate/heart-rate.component';
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
   { path: 'patients', component: PatientsComponent,canActivate: [AuthGuard]},
@@ -25,5 +26,6 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
   { path: 'diseases', component: DiseaseComponent, canActivate: [AuthGuard]},
   { path:'addDisease', component: ManageDiseasesComponent, canActivate: [AuthGuard]},
   { path:'updatedisease/:diseaseId',component: ManageDiseasesComponent, canActivate:[AuthGuard]},
-  { path: 'healthStatistics/:patientId', component: HelathInfoStatisticsComponent}
+  { path: 'healthStatistics/:patientId', component: HelathInfoStatisticsComponent},
+  { path: 'heartRate', component: HeartRateComponent}
 ]);

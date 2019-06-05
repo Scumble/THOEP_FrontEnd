@@ -17,6 +17,7 @@ import { DiseaseComponent } from '../disease/disease/disease.component';
 import { DiseaseService } from '../services/disease.service';
 import { ManageDiseasesComponent } from '../disease/manage-diseases/manage-diseases.component';
 import { ChartsModule } from 'ng2-charts';
+import { HeartRateComponent } from '../health-info/heart-rate/heart-rate.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { ChartsModule } from 'ng2-charts';
      HealthInfoEncodedComponent,
      HospitalsMapComponent,
      DiseaseComponent, 
+     HeartRateComponent,
      ManageDiseasesComponent
     ],
   imports: [

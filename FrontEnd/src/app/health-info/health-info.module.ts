@@ -6,9 +6,10 @@ import { routing } from './healthInfo.routing';
 import { AuthGuard } from '../auth.guard';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HeartRateComponent } from './heart-rate/heart-rate.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [HeartRateComponent],
   imports: [
     CommonModule,
     SharedModule,
