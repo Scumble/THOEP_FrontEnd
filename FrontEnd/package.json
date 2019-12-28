@@ -28,7 +28,7 @@
     "@types/jest": "^23.3.9",
     "chart.js": "^2.8.0",
     "core-js": "^2.5.4",
-    "jquery": "^3.3.1",
+    "jquery": "^3.4.0",
     "ng2-charts": "^2.2.3",
     "rxjs": "~6.3.3",
     "rxjs-compat": "^6.3.3",
