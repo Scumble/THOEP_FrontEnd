@@ -26,7 +26,7 @@
     "@ngx-translate/http-loader": "^4.0.0",
     "@types/googlemaps": "^3.30.19",
     "@types/jest": "^23.3.9",
-    "chart.js": "^2.8.0",
+    "chart.js": "^2.9.4",
     "core-js": "^2.5.4",
     "jquery": "^3.3.1",
     "ng2-charts": "^2.2.3",
